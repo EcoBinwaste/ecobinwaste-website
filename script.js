@@ -411,7 +411,22 @@
           };
 
           statusEl.textContent = 'Opening WhatsApp with your pickup details…';
-          await BookingAPI.submit(payload);
+          const response = await fetch('https://script.google.com/macros/s/AKfycbwsyClT12xizLIUIbFXGUgCfVPhpgW2WoADutFuFdwC623kfcfmSM6RFnG505ZV7eU/exec', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'text/plain;charset=utf-8'
+  },
+  body: JSON.stringify({
+    action: 'createBooking',
+    payload: payload
+  })
+});
+
+const result = await response.json();
+
+if (!result.success) {
+  throw new Error(result.error || 'Booking submission failed.');
+}
           trackEvent('booking_whatsapp_opened', { area: area, quantity: quantity });
 
         }catch(err){
