@@ -68,7 +68,7 @@ function listBookingsSecure(body) {
 }
 
 function getSheet() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const ss = SpreadsheetApp.openById('1oGVYz0MwoXX2GEVlvfX4VBGFdqFQrjjbeaiEfPGepl4');
   let sheet = ss.getSheetByName(SHEET_NAME);
   if (!sheet) {
     sheet = ss.insertSheet(SHEET_NAME);
