@@ -274,34 +274,7 @@
   // The Google Apps Script backend remains a separate, deployable
   // backend for the future booking/admin workflow.
   // ============================================================
-  var BookingAPI = (function(){
-    function getWhatsAppNumber(){
-      return (window.ECOBIN_CONFIG && window.ECOBIN_CONFIG.WHATSAPP_NUMBER) || '918736871481';
-    }
-
-    async function submit(payload){
-      var waNumber = getWhatsAppNumber();
-      var waText = [
-        'Hi, I would like to book an e-waste pickup.',
-        '',
-        'Name: ' + payload.name,
-        'Phone: ' + payload.phone,
-        'Email: ' + (payload.email || 'Not provided'),
-        'Address: ' + payload.address,
-        'Area: ' + payload.area,
-        'Waste type: ' + payload.wasteType,
-        'Quantity: ' + payload.quantity,
-        'Preferred date: ' + payload.pickupDate,
-        'Preferred time: ' + payload.pickupTime,
-        '',
-        'I will attach e-waste photos in WhatsApp if needed.'
-      ].join('\n');
-      window.location.href = 'https://wa.me/' + waNumber + '?text=' + encodeURIComponent(waText);
-      return null;
-    }
-
-    return { submit: submit };
-  })();
+  
 
 
 
