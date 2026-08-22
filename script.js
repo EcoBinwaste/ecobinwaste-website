@@ -267,13 +267,52 @@
 
 
 
+    // ============================================================
+  // BookingAPI — Google Apps Script booking backend
+  // Phase 1 + Phase 2
+  // Website booking form → Google Apps Script → Google Sheet
   // ============================================================
-  // BookingAPI — the public booking channel used by the website.
-  // Current production path is WhatsApp: it is complete, live, and
-  // requires no hidden endpoint or temporary technical configuration.
-  // The Google Apps Script backend remains a separate, deployable
-  // backend for the future booking/admin workflow.
-  // ============================================================
+  var BookingAPI = (function(){
+
+    var BACKEND_URL = 'https://script.google.com/macros/s/AKfycbwsyClT12xizLIUIbFXGUgCfVPhpgW2WoADutFuFdwC623kfcfmSM6RFnG505ZV7eU/exec';
+
+    async function submit(payload){
+
+      var response = await fetch(BACKEND_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'text/plain;charset=utf-8'
+        },
+        body: JSON.stringify({
+          action: 'createBooking',
+          payload: payload
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Booking server could not be reached. Please try again.');
+      }
+
+      var result;
+
+      try {
+        result = await response.json();
+      } catch (parseError) {
+        throw new Error('Booking server returned an invalid response. Please try again.');
+      }
+
+      if (!result.success) {
+        throw new Error(result.error || 'Booking could not be created.');
+      }
+
+      return result;
+    }
+
+    return {
+      submit: submit
+    };
+
+  })();
   
 
 
