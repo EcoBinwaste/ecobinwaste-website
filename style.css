@@ -60,8 +60,6 @@
   }
   @keyframes spin{to{transform:rotate(360deg);}}
 
-  .noscript-banner{padding:12px 16px; background:#fff4d6; color:#5a4616; text-align:center; font-size:13px; border-bottom:1px solid #e5d29c;}
-  [data-theme="dark"] .noscript-banner{background:#2f2a1a; color:#f1df9f; border-bottom-color:#665a32;}
   /* PROMO BAR */
   .promo-bar{
     background:linear-gradient(90deg,#256029,#3FA34D,#8BC34A);
@@ -477,3 +475,161 @@
   @media (prefers-reduced-motion:reduce){
     .reveal{opacity:1; transform:none; transition:none;}
   }
+
+/* ==========================================================
+   RESPONSIVE PATCH — preserves the existing design/UI
+   No SEO/HTML changes required.
+   ========================================================== */
+
+/* Prevent flex/grid children from forcing horizontal overflow. */
+.nav,
+.nav > *,
+.nav-actions,
+.hero-cta-bar,
+.slide-inner,
+.contact-grid,
+.footer-grid,
+.field-row,
+.mini-cta { min-width: 0; }
+
+/* Medium screens: give the header enough room before switching to mobile nav. */
+@media (max-width: 1020px) and (min-width: 861px){
+  .nav{padding-left:18px; padding-right:18px;}
+  nav.main-nav ul{gap:16px;}
+  .nav-actions{gap:7px;}
+  .nav-call,.nav-wa{padding-left:12px; padding-right:12px;}
+}
+
+@media (max-width: 860px){
+  body{overflow-x:hidden;}
+  .wrap{padding-left:18px; padding-right:18px;}
+  section{padding:52px 0;}
+
+  .hero-banner-wrap{padding-top:18px !important;}
+  .hero-h1{font-size:clamp(21px,5.5vw,28px); line-height:1.18;}
+
+  /* Let the mobile slide content breathe without changing its visual style. */
+  .carousel{min-height:0; height:clamp(390px,72vw,460px);}
+  .slide{padding:24px 52px 44px;}
+  .slide-inner{width:100%; max-width:100%;}
+  .slide-text{min-width:0; width:100%;}
+  .slide-text h2{font-size:clamp(21px,5.8vw,24px); overflow-wrap:anywhere;}
+  .slide-text p{font-size:14px; max-width:46ch; margin-left:auto; margin-right:auto;}
+  .car-arrow{width:40px; height:40px;}
+  .car-arrow.prev{left:10px;}
+  .car-arrow.next{right:10px;}
+
+  .hero-cta-bar{margin-left:8px; margin-right:8px; padding:20px 18px;}
+  .cta-bar-btns{width:100%;}
+  .cta-bar-btns .btn-primary,
+  .cta-bar-btns .btn-secondary{flex:1 1 180px; justify-content:center;}
+
+  .trust-item{padding:18px 10px;}
+  .section-head h2{font-size:clamp(25px,7vw,30px); line-height:1.2;}
+  .section-head p{font-size:14.5px;}
+
+  .about-grid{gap:32px;}
+  .about-badge-ring{width:190px; height:190px;}
+  .about-badge-ring-inner{width:154px; height:154px;}
+  .about-badge-ring-inner img{width:112px; height:112px;}
+
+  .service-card,.gallery-card,.testi-card{padding:22px 18px;}
+  .client-types{gap:16px;}
+  .map-embed{margin-top:28px;}
+  .map-embed iframe{height:260px;}
+
+  .mini-cta{padding:16px 18px;}
+  .mini-cta .btn-primary{width:100%; justify-content:center;}
+
+  .contact-left,.contact-right{padding:30px 22px;}
+  .contact-line{gap:18px; align-items:flex-start;}
+  .contact-line > :last-child{min-width:0; overflow-wrap:anywhere;}
+  .field-row{grid-template-columns:1fr; gap:0;}
+  .pill-group label{padding:11px 13px;}
+
+  .footer-grid{grid-template-columns:1fr 1fr; gap:22px 18px;}
+  .footer-bottom{flex-direction:column;}
+}
+
+/* Phones: stack controls and prevent any edge-to-edge crowding. */
+@media (max-width: 600px){
+  .wrap{padding-left:14px; padding-right:14px;}
+  section{padding:44px 0;}
+
+  .promo-bar{padding:7px 10px; gap:7px 10px; font-size:12px; line-height:1.35;}
+  .promo-bar > span{max-width:calc(100% - 50px);}
+  .promo-close{min-width:36px; min-height:36px;}
+
+  .nav{padding-left:10px; padding-right:10px;}
+  .brand{gap:8px; min-width:0;}
+  .brand-name{white-space:nowrap;}
+  .nav-actions{flex-shrink:0;}
+
+  .carousel{height:410px;}
+  .slide{padding-left:40px; padding-right:40px; padding-top:20px; padding-bottom:40px;}
+  .slide-icon{width:78px; height:78px;}
+  .slide-icon svg{width:42px; height:42px;}
+  .slide-text h2{font-size:21px;}
+  .slide-text p{font-size:13.5px; line-height:1.45;}
+  .car-arrow{width:36px; height:36px; font-size:18px;}
+  .car-arrow.prev{left:7px;}
+  .car-arrow.next{right:7px;}
+
+  .hero-cta-bar{margin:-20px 4px 0; padding:18px 14px; gap:14px;}
+  .cta-bar-title{font-size:18px;}
+  .cta-bar-badges{gap:6px;}
+  .cta-bar-badges span{font-size:11px; padding:5px 9px;}
+  .cta-bar-btns{flex-direction:column; gap:9px;}
+  .cta-bar-btns .btn-primary,
+  .cta-bar-btns .btn-secondary{width:100%; flex:none;}
+
+  .trust-strip{grid-template-columns:1fr 1fr;}
+  .trust-item{font-size:12px; padding:16px 7px;}
+  .trust-item svg{width:23px; height:23px;}
+
+  .client-types{grid-template-columns:1fr 1fr; gap:14px;}
+  .client-types .n{font-size:19px;}
+  .client-types .l{font-size:12px;}
+
+  .timeline{grid-template-columns:1fr; gap:24px;}
+  .tl-step{display:grid; grid-template-columns:44px 1fr; column-gap:14px; text-align:left; align-items:start;}
+  .tl-dot{grid-row:span 2; margin:0;}
+  .tl-step h3{padding-top:3px;}
+  .tl-step p{margin-top:3px;}
+
+  .gallery-grid,.testi-grid{gap:14px;}
+
+  .contact-grid{border-radius:12px;}
+  .contact-left,.contact-right{padding:26px 16px;}
+  .contact-left h2{font-size:24px;}
+  .cbtns{flex-direction:column;}
+  .cbtns .btn-primary,.cbtns .btn-secondary{width:100%; justify-content:center;}
+  .contact-line{font-size:13px; flex-direction:column; gap:3px;}
+  .contact-line > :last-child{text-align:left !important;}
+
+  .field input,.field select,.field textarea{font-size:16px; /* avoids iOS zoom */}
+  .pill-group label{font-size:12px; padding:10px 11px;}
+  .file-drop{padding:14px 10px;}
+
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .footer-bottom{font-size:11.5px;}
+
+  .float-wa{right:14px; bottom:14px; width:54px; height:54px;}
+  .float-chat{right:78px; bottom:14px; width:54px; height:54px;}
+  .scroll-top{left:14px; bottom:14px;}
+  .chat-window{right:10px; bottom:78px; width:calc(100vw - 20px); max-width:none; max-height:65vh;}
+}
+
+/* Very small phones (320–380px). */
+@media (max-width: 380px){
+  .brand-name{font-size:16px;}
+  .nav-wa{width:40px; height:40px;}
+  .menu-toggle{min-width:40px; min-height:40px;}
+  .carousel{height:400px;}
+  .slide{padding-left:34px; padding-right:34px;}
+  .slide-text h2{font-size:19px;}
+  .slide-text p{font-size:13px;}
+  .hero-h1{font-size:20px;}
+  .trust-item{font-size:11.5px;}
+  .footer-grid{grid-template-columns:1fr;}
+}
