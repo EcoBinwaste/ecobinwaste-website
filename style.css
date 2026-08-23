@@ -469,8 +469,15 @@
     .theme-toggle{display:none;}
     .mobile-theme-row{display:block;}
     .nav-call{display:none;}
-    .nav-wa{width:44px; height:44px; padding:0; border-radius:50%; justify-content:center;}
-    .nav-wa .nav-btn-label{display:none;}
+    /* Keep the header WhatsApp CTA as a normal pill on mobile.
+       The circular buttons are only for the floating WhatsApp/chat controls. */
+    .nav-wa{
+      width:auto; min-width:0; height:auto;
+      padding:8px 12px; border-radius:20px;
+      justify-content:center; white-space:nowrap;
+      display:flex; align-items:center;
+    }
+    .nav-wa .nav-btn-label{display:inline;}
   }
   @media (prefers-reduced-motion:reduce){
     .reveal{opacity:1; transform:none; transition:none;}
@@ -554,6 +561,49 @@
 /* Phones: stack controls and prevent any edge-to-edge crowding. */
 @media (max-width: 600px){
   .wrap{padding-left:14px; padding-right:14px;}
+
+  /* Header: keep the brand/logo on the left and actions on the right.
+     Do not shrink the logo into the circular WhatsApp button. */
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    gap:8px;
+  }
+  .brand{
+    display:flex;
+    align-items:center;
+    flex:1 1 auto;
+    min-width:0;
+    overflow:hidden;
+  }
+  .brand-mark{
+    width:42px;
+    height:42px;
+    flex:0 0 42px;
+  }
+  .brand-mark img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+  }
+  .brand > div:last-child{min-width:0;}
+  .brand-name{
+    font-size:17px;
+    white-space:nowrap;
+  }
+  .brand-tag{
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  .nav-actions{
+    flex:0 0 auto;
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
   section{padding:44px 0;}
 
   .promo-bar{padding:7px 10px; gap:7px 10px; font-size:12px; line-height:1.35;}
@@ -623,7 +673,7 @@
 /* Very small phones (320–380px). */
 @media (max-width: 380px){
   .brand-name{font-size:16px;}
-  .nav-wa{width:40px; height:40px;}
+  .nav-wa{width:auto; min-width:0; height:auto; padding:7px 10px; border-radius:20px;}
   .menu-toggle{min-width:40px; min-height:40px;}
   .carousel{height:400px;}
   .slide{padding-left:34px; padding-right:34px;}
