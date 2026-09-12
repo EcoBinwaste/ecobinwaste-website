@@ -234,6 +234,35 @@
       </button>
     </div>
   </div>
+      <div class="mobile-action-bar" aria-label="Quick actions">
+      <a
+        class="mobile-action-btn mobile-action-book"
+        href="#contact"
+        onclick="trackEvent('booking_cta_click',{location:'mobile_action_bar'})"
+      >
+        <span aria-hidden="true">📅</span>
+        <span>Book Pickup</span>
+      </a>
+
+      <a
+        class="mobile-action-btn mobile-action-call"
+        href="tel:+918736871481"
+        onclick="trackEvent('call_click',{location:'mobile_action_bar'})"
+      >
+        <span aria-hidden="true">☎</span>
+        <span>Call Now</span>
+      </a>
+
+      <a
+        class="mobile-action-btn mobile-action-whatsapp"
+        href="https://wa.me/918736871481?text=Hi%2C%20I%27d%20like%20to%20book%20an%20e-waste%20pickup"
+        onclick="trackEvent('whatsapp_click',{location:'mobile_action_bar'})"
+        target="_top"
+      >
+        <span aria-hidden="true">◉</span>
+        <span>WhatsApp</span>
+      </a>
+    </div>
 </header>
 
 <main id="main">
