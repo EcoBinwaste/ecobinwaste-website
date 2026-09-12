@@ -82,14 +82,43 @@
   }
   applyTheme();
   function toggleTheme(){
-    try{
-      isDark = !isDark;
-      try{ localStorage.setItem('ecobin-theme', isDark ? 'dark' : 'light'); }catch(storageErr){}
-      applyTheme();
-      trackEvent('theme_toggle', { theme: isDark ? 'dark' : 'light' });
-    }catch(e){ console.error('Theme toggle failed:', e); }
-  }
+  try{
+    isDark = !isDark;
 
+    try{
+      localStorage.setItem(
+        'ecobin-theme',
+        isDark ? 'dark' : 'light'
+      );
+    }catch(storageErr){}
+
+    applyTheme();
+
+    trackEvent('theme_toggle', {
+      theme: isDark ? 'dark' : 'light'
+    });
+
+    // Close mobile menu after changing theme
+    try{
+      var mobileNav = document.querySelector('nav.main-nav');
+      var mobileMenuBtn = document.getElementById('menuToggle');
+
+      if (mobileNav && mobileNav.classList.contains('mobile-open')){
+        mobileNav.classList.remove('mobile-open');
+
+        if (mobileMenuBtn){
+          mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          mobileMenuBtn.setAttribute('aria-label', 'Open menu');
+        }
+      }
+    }catch(menuErr){
+      console.error('Mobile menu close after theme toggle failed:', menuErr);
+    }
+
+  }catch(e){
+    console.error('Theme toggle failed:', e);
+  }
+}
   // ---- Mobile menu ----
   var toggleMobileMenu = function(){};
   try{
