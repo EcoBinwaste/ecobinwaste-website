@@ -131,7 +131,7 @@
         menuBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
       };
       // Clicking a nav link closes the menu (required for a usable mobile menu).
-      mainNav.querySelectorAll('a[data-nav]').forEach(function(link){
+      mainNav.querySelectorAll('a[data-nav], .mobile-book-btn').forEach(function(link){
         link.addEventListener('click', function(){
           mainNav.classList.remove('mobile-open');
           menuBtn.setAttribute('aria-expanded', 'false');
