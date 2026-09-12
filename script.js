@@ -73,13 +73,33 @@
   var isDark = false;
   try{ isDark = localStorage.getItem('ecobin-theme') === 'dark'; }catch(e){}
   function applyTheme(){
-    try{
-      document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
-      document.querySelectorAll('.theme-toggle, .mobile-theme-btn').forEach(function(btn){
-        btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-      });
-    }catch(e){ console.error('Theme apply failed:', e); }
+  try{
+    document.documentElement.setAttribute(
+      'data-theme',
+      isDark ? 'dark' : 'light'
+    );
+
+    document.querySelectorAll('.theme-toggle, .mobile-theme-btn').forEach(function(btn){
+      btn.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+    });
+
+    // Keep the mobile menu label synchronized with the current theme.
+    document.querySelectorAll('.mobile-theme-btn span').forEach(function(label){
+      label.textContent = isDark ? 'Light Mode' : 'Dark Mode';
+    });
+
+    // Keep the accessible label synchronized too.
+    document.querySelectorAll('.mobile-theme-btn').forEach(function(btn){
+      btn.setAttribute(
+        'aria-label',
+        isDark ? 'Switch to light mode' : 'Switch to dark mode'
+      );
+    });
+
+  }catch(e){
+    console.error('Theme apply failed:', e);
   }
+}
   applyTheme();
   function toggleTheme(){
   try{
@@ -120,36 +140,73 @@
   }
 }
   // ---- Mobile menu ----
-  var toggleMobileMenu = function(){};
-  try{
-    var mainNav = document.querySelector('nav.main-nav');
-    var menuBtn = document.getElementById('menuToggle');
-    if (mainNav && menuBtn){
-      toggleMobileMenu = function(){
-        var isOpen = mainNav.classList.toggle('mobile-open');
-        menuBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        menuBtn.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
-      };
-      // Clicking a nav link closes the menu (required for a usable mobile menu).
-      mainNav.querySelectorAll('a[data-nav], .mobile-book-btn').forEach(function(link){
-        link.addEventListener('click', function(){
-          mainNav.classList.remove('mobile-open');
-          menuBtn.setAttribute('aria-expanded', 'false');
-          menuBtn.setAttribute('aria-label', 'Open menu');
-        });
-      });
-      // Escape key closes the menu (keyboard accessibility).
-      document.addEventListener('keydown', function(e){
-        if (e.key === 'Escape' && mainNav.classList.contains('mobile-open')){
-          mainNav.classList.remove('mobile-open');
-          menuBtn.setAttribute('aria-expanded', 'false');
-          menuBtn.setAttribute('aria-label', 'Open menu');
-          menuBtn.focus();
-        }
-      });
-    }
-  }catch(e){ console.error('Mobile menu init failed:', e); }
+var toggleMobileMenu = function(){};
 
+try{
+  var mainNav = document.querySelector('nav.main-nav');
+  var menuBtn = document.getElementById('menuToggle');
+
+  if (mainNav && menuBtn){
+
+    function closeMobileMenu(){
+      mainNav.classList.remove('mobile-open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.setAttribute('aria-label', 'Open menu');
+    }
+
+    toggleMobileMenu = function(){
+      var isOpen = mainNav.classList.toggle('mobile-open');
+
+      menuBtn.setAttribute(
+        'aria-expanded',
+        isOpen ? 'true' : 'false'
+      );
+
+      menuBtn.setAttribute(
+        'aria-label',
+        isOpen ? 'Close menu' : 'Open menu'
+      );
+    };
+
+    // Clicking a navigation link closes the menu.
+    mainNav.querySelectorAll('a[data-nav], .mobile-book-btn').forEach(function(link){
+      link.addEventListener('click', function(){
+        closeMobileMenu();
+      });
+    });
+
+    // Clicking outside the mobile menu closes it.
+    document.addEventListener('click', function(e){
+
+      if (!mainNav.classList.contains('mobile-open')){
+        return;
+      }
+
+      var clickedInsideMenu = mainNav.contains(e.target);
+      var clickedMenuButton = menuBtn.contains(e.target);
+
+      if (!clickedInsideMenu && !clickedMenuButton){
+        closeMobileMenu();
+      }
+
+    });
+
+    // Escape key closes the menu.
+    document.addEventListener('keydown', function(e){
+      if (
+        e.key === 'Escape' &&
+        mainNav.classList.contains('mobile-open')
+      ){
+        closeMobileMenu();
+        menuBtn.focus();
+      }
+    });
+
+  }
+
+}catch(e){
+  console.error('Mobile menu init failed:', e);
+}
 
 
   // ---- Scroll reveal ----
