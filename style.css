@@ -95,6 +95,174 @@
   .nav-call{border:1.5px solid var(--green-dark); color:var(--green-dark); padding:8px 16px; border-radius:20px; font-size:13.5px; font-weight:700; text-decoration:none; display:flex; align-items:center; gap:6px;}
   .nav-wa{background:var(--whatsapp); color:#fff; padding:9px 16px; border-radius:20px; font-size:13.5px; font-weight:700; text-decoration:none; display:flex; align-items:center; gap:6px;}
   .menu-toggle{display:none; background:none; border:none; font-size:24px; cursor:pointer; color:var(--green-dark);}
+
+/* ==========================================================
+   MOBILE QUICK CTA
+   Separate action bar for mobile users.
+   Desktop: hidden.
+   Mobile: Book Pickup + Call Now + WhatsApp.
+   ========================================================== */
+
+.mobile-quick-cta{
+  display:none;
+}
+
+.mobile-quick-cta-inner{
+  width:100%;
+  display:flex;
+  align-items:stretch;
+  justify-content:center;
+  gap:8px;
+}
+
+.mobile-quick-btn{
+  min-height:48px;
+  flex:1 1 0;
+  min-width:0;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+
+  padding:9px 10px;
+  border-radius:24px;
+
+  text-decoration:none;
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  font-weight:700;
+  line-height:1.2;
+
+  white-space:nowrap;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.mobile-quick-btn:hover{
+  transform:translateY(-1px);
+}
+
+.mobile-quick-btn:active{
+  transform:translateY(0);
+}
+
+.mobile-book-btn{
+  background:var(--green);
+  color:#fff;
+  box-shadow:0 3px 10px rgba(63,163,77,0.22);
+}
+
+.mobile-call-btn{
+  background:var(--paper);
+  color:var(--green-dark);
+  border:1.5px solid var(--green-dark);
+}
+
+.mobile-wa-btn{
+  background:var(--whatsapp);
+  color:#fff;
+  box-shadow:0 3px 10px rgba(37,211,102,0.22);
+}
+
+.mobile-quick-btn span:first-child{
+  font-size:13px;
+  line-height:1;
+  flex:0 0 auto;
+}
+
+
+/* ==========================================================
+   MOBILE CTA RESPONSIVE BEHAVIOUR
+   ========================================================== */
+
+@media (max-width:860px){
+
+  .mobile-quick-cta{
+    display:block;
+    position:relative;
+    z-index:85;
+
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 2px 8px rgba(23,51,25,0.06);
+
+    padding:10px 14px;
+  }
+
+  .mobile-quick-cta-inner{
+    max-width:720px;
+    margin:0 auto;
+  }
+
+  /* Header itself remains clean:
+     logo + tagline + menu only. */
+  .nav-actions .nav-call,
+  .nav-actions .nav-wa{
+    display:none;
+  }
+
+  .nav-actions{
+    gap:0;
+  }
+
+}
+
+
+/* ==========================================================
+   PHONE
+   ========================================================== */
+
+@media (max-width:600px){
+
+  .mobile-quick-cta{
+    padding:9px 12px;
+  }
+
+  .mobile-quick-cta-inner{
+    gap:7px;
+  }
+
+  .mobile-quick-btn{
+    min-height:46px;
+    padding:8px 7px;
+    font-size:12.5px;
+    border-radius:23px;
+    gap:4px;
+  }
+
+}
+
+
+/* ==========================================================
+   VERY SMALL PHONES
+   ========================================================== */
+
+@media (max-width:380px){
+
+  .mobile-quick-cta{
+    padding:8px 9px;
+  }
+
+  .mobile-quick-cta-inner{
+    gap:5px;
+  }
+
+  .mobile-quick-btn{
+    min-height:44px;
+    padding:7px 5px;
+    font-size:11.5px;
+    border-radius:22px;
+  }
+
+  .mobile-quick-btn span:first-child{
+    font-size:12px;
+  }
+
+}
+
   /* Theme-toggle entry point duplicated inside the mobile nav panel — only
      shown there on the narrowest widths where the header row has no space
      left for it (see the 412px tier below). Hidden everywhere else. */
