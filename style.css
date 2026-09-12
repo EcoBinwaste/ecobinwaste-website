@@ -94,6 +94,34 @@
   }
   .nav-call{border:1.5px solid var(--green-dark); color:var(--green-dark); padding:8px 16px; border-radius:20px; font-size:13.5px; font-weight:700; text-decoration:none; display:flex; align-items:center; gap:6px;}
   .nav-wa{background:var(--whatsapp); color:#fff; padding:9px 16px; border-radius:20px; font-size:13.5px; font-weight:700; text-decoration:none; display:flex; align-items:center; gap:6px;}
+/* Desktop navigation booking button */
+.desktop-book-row{
+  display:list-item;
+}
+
+.desktop-book-btn{
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  padding:8px 13px !important;
+  border-radius:20px;
+  background:var(--green);
+  color:#fff !important;
+  font-size:13px !important;
+  font-weight:700 !important;
+  text-decoration:none;
+  white-space:nowrap;
+  opacity:1 !important;
+}
+
+.desktop-book-btn:hover{
+  background:var(--green-dark);
+  color:#fff !important;
+}
+
+.desktop-book-btn::after{
+  display:none !important;
+}
   .menu-toggle{display:none; background:none; border:none; font-size:24px; cursor:pointer; color:var(--green-dark);}
 
   /* Theme-toggle entry point duplicated inside the mobile nav panel — only
@@ -1046,5 +1074,14 @@
     padding:7px 4px;
     font-size:11.5px;
     gap:3px;
+  }
+}
+/* ==========================================================
+   DESKTOP BOOKING BUTTON — HIDE ON MOBILE
+   ========================================================== */
+
+@media (max-width: 860px){
+  .desktop-book-row{
+    display:none;
   }
 }
