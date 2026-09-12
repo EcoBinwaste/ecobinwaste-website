@@ -741,3 +741,309 @@
   .trust-item{font-size:11.5px;}
   .footer-grid{grid-template-columns:1fr;}
 }
+
+/* ==========================================================
+   MOBILE HEADER — FINAL RESPONSIVE LAYOUT
+   Desktop header remains unchanged.
+   Mobile gets:
+   Brand + Menu
+   Quick actions: Book Pickup / Call / WhatsApp
+   ========================================================== */
+
+.mobile-action-bar{
+  display:none;
+}
+
+.mobile-book-row{
+  display:none;
+}
+
+/* Tablet / mobile navigation */
+@media (max-width: 860px){
+
+  nav.main-nav ul{
+    display:none;
+  }
+
+  .menu-toggle{
+    display:flex;
+    background:none;
+    border:none;
+    color:var(--green-dark);
+    cursor:pointer;
+    min-width:44px;
+    min-height:44px;
+    align-items:center;
+    justify-content:center;
+  }
+
+  nav.main-nav.mobile-open{
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+  }
+
+  nav.main-nav.mobile-open ul{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    padding:8px 24px 16px;
+  }
+
+  nav.main-nav.mobile-open li{
+    border-bottom:1px solid var(--line);
+  }
+
+  nav.main-nav.mobile-open a{
+    display:block;
+    padding:14px 4px;
+    font-size:15px;
+  }
+
+  nav.main-nav.mobile-open li.mobile-book-row{
+    border-bottom:none;
+    padding:10px 0 6px;
+  }
+
+  nav.main-nav.mobile-open .mobile-book-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:100%;
+    min-height:44px;
+    padding:10px 16px;
+    border-radius:24px;
+    background:var(--green);
+    color:#fff;
+    font-size:14px;
+    font-weight:700;
+    text-decoration:none;
+  }
+
+  .mobile-theme-row{
+    display:block;
+  }
+
+  .mobile-theme-btn{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    width:100%;
+    padding:14px 4px;
+  }
+
+  /* Keep tagline available on mobile. */
+  .brand-tag{
+    display:block;
+  }
+}
+
+/* ==========================================================
+   PHONE HEADER
+   ========================================================== */
+
+@media (max-width: 600px){
+
+  .nav{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    gap:8px;
+    padding:10px 10px;
+  }
+
+  .brand{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex:1 1 auto;
+    min-width:0;
+    overflow:hidden;
+  }
+
+  .brand-mark{
+    width:42px;
+    height:42px;
+    flex:0 0 42px;
+    border-radius:50%;
+    overflow:hidden;
+  }
+
+  .brand-mark img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+  }
+
+  .brand > div:last-child{
+    min-width:0;
+    overflow:hidden;
+  }
+
+  .brand-name{
+    font-size:17px;
+    line-height:1.1;
+    white-space:nowrap;
+  }
+
+  .brand-tag{
+    display:block;
+    font-size:9.5px;
+    line-height:1.2;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    opacity:.75;
+  }
+
+  /*
+   * The old Call + WhatsApp buttons stay available for desktop.
+   * Mobile uses the dedicated action bar below the brand row.
+   */
+  .nav-actions{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    flex:0 0 auto;
+  }
+
+  .nav-actions .theme-toggle,
+  .nav-actions .nav-call,
+  .nav-actions .nav-wa{
+    display:none;
+  }
+
+  .menu-toggle{
+    display:flex;
+    width:44px;
+    height:44px;
+    min-width:44px;
+    min-height:44px;
+    padding:0;
+    align-items:center;
+    justify-content:center;
+    flex:0 0 44px;
+  }
+
+  /* ------------------------------------------
+     Mobile quick-action row
+     ------------------------------------------ */
+
+  .mobile-action-bar{
+    display:grid;
+    grid-template-columns:1fr 1fr 1fr;
+    gap:8px;
+    padding:9px 10px;
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+  }
+
+  .mobile-action-btn{
+    min-width:0;
+    min-height:42px;
+    padding:8px 7px;
+    border-radius:22px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    text-decoration:none;
+    font-size:12.5px;
+    font-weight:700;
+    white-space:nowrap;
+    box-sizing:border-box;
+  }
+
+  .mobile-action-book{
+    background:var(--green);
+    color:#fff;
+  }
+
+  .mobile-action-call{
+    background:var(--paper);
+    color:var(--green-dark);
+    border:1.5px solid var(--green-dark);
+  }
+
+  .mobile-action-whatsapp{
+    background:var(--whatsapp);
+    color:#fff;
+  }
+
+  /* ------------------------------------------
+     Mobile menu booking CTA
+     ------------------------------------------ */
+
+  .mobile-book-row{
+    display:block;
+  }
+
+  nav.main-nav.mobile-open .mobile-book-btn{
+    display:flex;
+  }
+
+  /* The menu sits below the header row.
+     Keep the action bar outside the menu. */
+  nav.main-nav.mobile-open{
+    z-index:95;
+  }
+
+  section{
+    scroll-margin-top:120px;
+  }
+}
+
+/* ==========================================================
+   VERY SMALL PHONES
+   ========================================================== */
+
+@media (max-width: 380px){
+
+  .nav{
+    padding-left:8px;
+    padding-right:8px;
+  }
+
+  .brand{
+    gap:7px;
+  }
+
+  .brand-mark{
+    width:40px;
+    height:40px;
+    flex-basis:40px;
+  }
+
+  .brand-name{
+    font-size:16px;
+  }
+
+  .brand-tag{
+    font-size:8.5px;
+  }
+
+  .menu-toggle{
+    width:42px;
+    height:42px;
+    min-width:42px;
+    min-height:42px;
+    flex-basis:42px;
+  }
+
+  .mobile-action-bar{
+    gap:5px;
+    padding:8px;
+  }
+
+  .mobile-action-btn{
+    min-height:40px;
+    padding:7px 4px;
+    font-size:11.5px;
+    gap:3px;
+  }
+}
