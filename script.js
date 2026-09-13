@@ -897,30 +897,6 @@ try{
        ========================================================= */
 
     function renderQuickButtons(){
-  chatQuick.innerHTML = '';
-
-  FAQ.forEach(function(item){
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.textContent = item.q;
-
-    btn.onclick = function(){
-      // Remove highlight from all quick questions
-      var allButtons = chatQuick.querySelectorAll('button');
-      allButtons.forEach(function(button){
-        button.classList.remove('selected');
-      });
-
-      // Highlight the question selected by the customer
-      btn.classList.add('selected');
-
-      // Process the selected question
-      askQuestion(item.q);
-    };
-
-    chatQuick.appendChild(btn);
-  });
-}
 
       chatQuick.innerHTML = '';
 
