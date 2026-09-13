@@ -1329,3 +1329,21 @@
     max-height:135px;
   }
 }
+
+/* ==========================================================
+   CHATBOT — SELECTED QUICK QUESTION
+   Shows the customer's currently selected question.
+   ========================================================== */
+
+.chat-quick button.selected{
+  background:var(--green-dark);
+  color:#fff;
+  border-color:var(--green-dark);
+  font-weight:700;
+  box-shadow:0 2px 8px rgba(37,96,41,0.22);
+}
+
+.chat-quick button.selected:hover{
+  background:var(--green-dark);
+  color:#fff;
+}
